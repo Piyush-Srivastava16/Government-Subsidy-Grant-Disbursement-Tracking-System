@@ -83,40 +83,66 @@ FLOW OF APPLICATION
 
 
 
-## SubsidyController.java
+## 📁 Project Components
 
-* @RestController annotation so that Spring can treat this class as a REST API controller.
-* @RequestMapping("/api/subsidies") as the base URL for all subsidy-related endpoints.
-* @PostMapping --> creating a subsidy
-* @GetMapping --> reading data
-* @PutMapping --> updating a subsidy
+### 1. SubsidyController.java
 
-* @RequestBody to receive the subsidy data from the client. 
-* @PathVariable when retrieving a specific subsidy by its ID.
-* ResponseEntity so that I can return both the response data and appropriate HTTP status codes.
-* @Qualifier to explicitly inject the bean. Dude in my case it is V2.
+The `SubsidyController` handles HTTP requests and responses related to subsidy operations.
 
+- `@RestController` marks the class as a REST controller that handles HTTP requests and returns data, usually in JSON format.
+- `@RequestMapping("/api/subsidies")` defines the base URL for all subsidy-related endpoints.
+- `@PostMapping` is used to create a new subsidy.
+- `@GetMapping` is used to retrieve subsidy data.
+- `@PutMapping` is used to update an existing subsidy.
+- `@DeleteMapping` is used to delete a subsidy.
+- `@RequestBody` converts JSON request data into a Java object.
+- `@PathVariable` extracts values such as the subsidy ID from the URL.
+- `ResponseEntity` is used to return both response data and appropriate HTTP status codes.
+- `@Qualifier` is used to explicitly select a specific service implementation. In this project, `subsidyServiceV2` is selected.
 
+---
 
+### 2. SubsidyService.java
 
-## SubsidyService.java ---> Business logic
+`SubsidyService` is an interface that defines the business operations required for subsidy management.
 
-* SubsidyService interface defines the operations required for the CRUD functionality.
-* It aslo Maintain a layered and loosely coupled architecture where the controller handles requests, the service handles business logic, and the repository handles database operations
+It provides methods for:
 
+- Creating a subsidy
+- Retrieving a subsidy by ID
+- Retrieving all subsidies
+- Updating a subsidy
+- Deleting a subsidy
 
-### SubsidyServiceImplV1 and V2.
+The service interface helps maintain a **layered and loosely coupled architecture**, where:
 
-* @Service annotation to tell Spring that this class belongs to the service layer and should be managed as a Spring Bean.
-* Constructor-based dependency injection to inject SubsidyRepository into the service class
-* For creating subsidy -> save() 
-* Reading data -> findById() and findAll()   etc.
-* orElseThrow() --> exception
+```text
+Controller  →  Handles HTTP requests
+Service     →  Handles business logic
+Repository  →  Handles database operations
+```
 
-NOTE :) 
-* In V2, I added some additional business logic. When a new subsidy is created without a status, I automatically assign PENDING as the default status.
-* For deletion, I use existsById() to verify that the record exists before deleting it.
+### 3. SubsidyServiceImplV1.java and SubsidyServiceImplV2.java
 
+These classes provide implementations of the `SubsidyService` interface.
+
+- `@Service` marks the class as a Spring-managed service component. 
+- Constructor-based dependency injection is used to inject `SubsidyRepository`. 
+- `save()` is used to create a subsidy. 
+- `findById()` is used to retrieve a subsidy by its ID. 
+- `findAll()` is used to retrieve all subsidies. 
+- `deleteById()` is used to delete a subsidy. 
+- `orElseThrow()` is used to throw a custom exception when a requested subsidy does not exist. 
+
+#### Additional Business Logic in V2
+
+`SubsidyServiceImplV2` contains additional business logic compared to V1.
+
+When a new subsidy is created without a status, the system automatically assigns:
+
+```text
+PENDING
+```
 
 
 
