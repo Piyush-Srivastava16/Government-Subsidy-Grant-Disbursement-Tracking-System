@@ -500,7 +500,7 @@ DELETE http://localhost:8080/api/subsidies/1
 ## Step 1: Clone the Repository
 
 ```bash
-git clone <YOUR_GITHUB_REPOSITORY_URL>
+git clone https://github.com/Piyush-Srivastava16/Government-Subsidy-Grant-Disbursement-Tracking-System
 ```
 
 ## Step 2: Open the Project
