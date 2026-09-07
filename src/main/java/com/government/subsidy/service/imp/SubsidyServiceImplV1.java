@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("subsidyServiceV1")    // "@Service marks a class as a service component containing business logic." Spring will automatically create and manage an instance of UserService as a Spring Bean.
+@Service("subsidyServiceV1")    
 public class SubsidyServiceImplV1 implements SubsidyService {
 
-   private final SubsidyRepository subsidyRepository;  //  final ---> If once subsidyRepository is assigned, it cannot be assigned to another repository later.
+   private final SubsidyRepository subsidyRepository; 
 
     public SubsidyServiceImplV1(SubsidyRepository subsidyRepository) {
         this.subsidyRepository = subsidyRepository;

@@ -41,8 +41,7 @@ public class SubsidyController {
     @GetMapping
     public ResponseEntity<List<Subsidy>> getAllSubsidies() {
 
-        List<Subsidy> subsidies =
-                subsidyService.getAllSubsidies();
+        List<Subsidy> subsidies = subsidyService.getAllSubsidies(); 
 
         return ResponseEntity.ok(subsidies);
     }

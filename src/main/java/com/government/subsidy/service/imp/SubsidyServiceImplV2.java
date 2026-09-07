@@ -8,10 +8,10 @@ import org.springframework.stereotype.Service;
 
 import java.util.List;
 
-@Service("subsidyServiceV2")
+@Service("subsidyServiceV2")   
 public class SubsidyServiceImplV2 implements SubsidyService {
 
-    private final SubsidyRepository subsidyRepository;
+    private final SubsidyRepository subsidyRepository;  //  final ---> If once subsidyRepository is assigned, it cannot be assigned to another repository later.
 
     public SubsidyServiceImplV2(SubsidyRepository subsidyRepository) {
         this.subsidyRepository = subsidyRepository;

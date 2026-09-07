@@ -25,8 +25,13 @@ public class BeneficiaryDocument {
     private String verificationStatus;
 
     @Setter
+    private String fileName;
+
+    @Setter
+    private String filePath;
+
+    @Setter
     @ManyToOne
     @JoinColumn(name = "beneficiary_id")
     private Beneficiary beneficiary;
-
 }
