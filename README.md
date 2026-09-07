@@ -1,518 +1,450 @@
-# Government Subsidy & Grant Disbursement Tracking System
-
-A Spring Boot REST API project designed to manage and track government subsidies and grants, including beneficiary information, subsidy amounts, application status, and disbursement-related records.
+# Development of Digital Subsidy & Grant Administration Platform
 
 ## 📌 Project Overview
 
-The **Government Subsidy & Grant Disbursement Tracking System** is a backend application developed using **Java, Spring Boot, Spring Data JPA, Hibernate, and MySQL**.
+The **Development of Digital Subsidy & Grant Administration Platform** is a web-based application designed to streamline and manage the complete lifecycle of government subsidy and grant administration.
 
-The system provides REST APIs to perform CRUD operations on subsidy records.
+The platform manages the process from **beneficiary registration and subsidy application to multi-level verification, milestone-based disbursement, fund utilization, and analytics**.
 
-It follows a layered architecture where responsibilities are separated into:
-
-* Controller Layer
-* Service Layer
-* Repository Layer
-* Entity Layer
-* Exception Handling Layer
-
-The project is designed to make subsidy management easier, more structured, and scalable.
+The system provides role-based access for different government officials and maintains a centralized database for secure and efficient subsidy administration.
 
 ---
 
-## 🚀 Features
+## 🎯 Objectives
 
-* Create a new subsidy record
-* Retrieve a subsidy by ID
-* Retrieve all subsidies
-* Update an existing subsidy
-* Delete a subsidy
-* Automatic default status as `PENDING`
-* Custom exception handling
-* Global exception handling
-* RESTful API architecture
-* MySQL database integration
-* JPA/Hibernate based database operations
-* Constructor-based dependency injection
-* Clean layered architecture
+* Digitize the subsidy and grant administration process.
+* Manage beneficiary and government scheme information.
+* Automate application eligibility and verification workflows.
+* Support multi-level verification and approval.
+* Manage staged fund disbursement based on milestones.
+* Track utilization of released funds.
+* Provide dashboards and analytics for monitoring.
+* Maintain audit logs for important system activities.
+* Implement role-based access control.
 
 ---
 
-## 🛠️ Technologies Used
+## 🚀 Key Features
 
-| Technology         | Purpose                  |
-| ------------------ | ------------------------ |
-| Java               | Programming Language     |
-| Spring Boot        | Backend Framework        |
-| Spring Web         | REST API Development     |
-| Spring Data JPA    | Database Access          |
-| Hibernate          | ORM                      |
-| MySQL              | Relational Database      |
-| Maven              | Dependency Management    |
-| Lombok             | Reduces Boilerplate Code |
-| Postman            | API Testing              |
+### 1. Beneficiary Management
+
+* Register beneficiaries.
+* Update beneficiary information.
+* Search and manage beneficiary records.
+* Maintain category, region, and income details.
+
+### 2. Scheme Management
+
+* Create and manage government subsidy schemes.
+* Define eligibility criteria.
+* Configure grant amounts.
+* Maintain regional scheme information.
+* Track scheme allocation budgets.
+
+### 3. Application Management
+
+* Create subsidy applications.
+* Link applications with beneficiaries and schemes.
+* Maintain application status.
+* Store eligibility scores.
+* Track application lifecycle.
+
+### 4. Document Management
+
+* Upload beneficiary documents.
+* Store document metadata.
+* Associate documents with beneficiaries.
+* Verify or reject uploaded documents.
+* Maintain document verification status.
+
+### 5. Multi-Level Verification
+
+The platform supports a multi-level verification workflow:
+
+```text
+FIELD_OFFICER
+      ↓
+DISTRICT_OFFICER
+      ↓
+FINANCE_APPROVER
+      ↓
+APPLICATION APPROVED
+```
+
+Each verification stage can contain:
+
+* Verification level
+* Officer name
+* Status
+* Remarks
+* Application reference
+
+### 6. Milestone Management
+
+* Create application milestones.
+* Define due dates.
+* Track milestone status.
+* Record milestone remarks.
+* Support milestone-based fund release.
+
+### 7. Disbursement Management
+
+* Create disbursement records.
+* Link disbursement with applications and milestones.
+* Track disbursement amount.
+* Track disbursement date.
+* Maintain `PENDING`, `RELEASED`, and `CANCELLED` statuses.
+
+### 8. Fund Utilization
+
+* Record utilized funds.
+* Link utilization with disbursements.
+* Track utilization date.
+* Maintain utilization descriptions.
+* Verify or reject utilization records.
+
+### 9. Dashboard & Analytics
+
+The system provides:
+
+* Total beneficiaries
+* Total applications
+* Approved applications
+* Pending applications
+* Total disbursements
+* Total fund released
+* Total fund utilized
+* Fund utilization percentage
+* Beneficiaries by region
+* Applications by status
+
+### 10. Security & Role-Based Access
+
+The platform provides different access levels:
+
+| Role             | Access                                 |
+| ---------------- | -------------------------------------- |
+| ADMIN            | All modules                            |
+| FIELD_OFFICER    | Beneficiaries, Applications, Documents |
+| DISTRICT_OFFICER | Verifications, Milestones              |
+| FINANCE_APPROVER | Disbursements, Fund Utilization        |
+
+Authentication is implemented using **Spring Security with Basic Authentication and BCrypt password encoding**.
+
+---
+
+## 🛠️ Technology Stack
+
+### Backend
+
+* Java 17
+* Spring Boot
+* Spring MVC
+* Spring Data JPA
+* Hibernate
+* Spring Security
+* REST APIs
+* Maven
+* Lombok
+
+### Database
+
+* MySQL
+
+### Frontend
+
+* React.js
+* Vite
+* JavaScript
+* HTML
+* CSS
+* Axios
+* React Router
+
+### Development Tools
+
+* IntelliJ IDEA / VS Code
+* MySQL Workbench
+* Postman
+* Git
+* GitHub
+
+---
+
+## 🏗️ System Architecture
+
+The project follows a layered architecture:
+
+```text
+                    React Frontend
+                          │
+                          ▼
+                    REST API Layer
+                          │
+                          ▼
+                    Controller Layer
+                          │
+                          ▼
+                     Service Layer
+                          │
+                          ▼
+                   Repository Layer
+                          │
+                          ▼
+                     MySQL Database
+```
+
+### Backend Flow
+
+```text
+Client
+  ↓
+Controller
+  ↓
+Service
+  ↓
+Repository
+  ↓
+Database
+```
+
+This separation improves maintainability, scalability, and code organization.
+
+---
+
+## 🔄 Complete Business Workflow
+
+```text
+Beneficiary Registration
+          ↓
+Scheme Selection
+          ↓
+Application Creation
+          ↓
+Document Upload
+          ↓
+Field Officer Verification
+          ↓
+District Officer Verification
+          ↓
+Finance Approver
+          ↓
+Application Approved
+          ↓
+Milestone Creation
+          ↓
+Milestone Completion
+          ↓
+Fund Disbursement
+          ↓
+Fund Utilization
+          ↓
+Dashboard & Analytics
+```
+
+---
+
+## 🔐 Security
+
+The application uses **Spring Security** for authentication and authorization.
+
+Role-based access is implemented using the following roles:
+
+```text
+ADMIN
+FIELD_OFFICER
+DISTRICT_OFFICER
+FINANCE_APPROVER
+```
+
+Passwords are stored using **BCrypt password hashing**.
+
 ---
 
 ## 📂 Project Structure
 
 ```text
-src
-└── main
-    └── java
-        └── com.government.subsidy
-            │
-            ├── controller
-            │   └── SubsidyController.java
-            │
-            ├── entity
-            │   └── Subsidy.java
-            │
-            ├── exception
-            │   ├── SubsidyNotFoundException.java
-            │   └── GlobalExceptionHandler.java
-            │
-            ├── repository
-            │   └── SubsidyRepository.java
-            │
-            └── service
-                ├── SubsidyService.java
-                ├── SubsidyServiceImplV1.java
-                └── SubsidyServiceImplV2.java
-```
-
----
-
-#  System Architecture
-
-The application follows a layered architecture.
-
-```text
-                    Client / Postman
-                           │
-                           │ HTTP Request
-                           ▼
-                 ┌─────────────────────┐
-                 │  SubsidyController  │
-                 │    REST APIs         │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │    SubsidyService   │
-                 │     Interface       │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │ SubsidyServiceImpl  │
-                 │   Business Logic    │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │  SubsidyRepository  │
-                 │    Spring Data JPA  │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │    JPA / Hibernate  │
-                 └──────────┬──────────┘
-                            │
-                            ▼
-                 ┌─────────────────────┐
-                 │   MySQL Database    │
-                 └─────────────────────┘
-```
-
----
-
-# 🔄 Application Flow
-
-For example, when creating a subsidy:
-
-```text
-Client / Postman
-       ↓
-POST /api/subsidies
-       ↓
-SubsidyController
-       ↓
-SubsidyService
-       ↓
-SubsidyServiceImplV2
-       ↓
-Business Logic
-       ↓
-SubsidyRepository
-       ↓
-JPA / Hibernate
-       ↓
-MySQL
-       ↓
-Response
-```
-
----
-
-# 🗃️ Entity Structure
-
-The main entity of the application is `Subsidy`.
-
-```text
-Subsidy
+Government-Subsidy-Grant-System/
 │
-├── id
-├── name
-├── description
-├── amount
-├── beneficiaryName
-└── status
-```
-
-### Primary Key
-
-The `id` field is the primary key.
-
-`GenerationType.IDENTITY` allows MySQL to automatically generate the ID.
-
----
-
-# 🔌 REST API Endpoints
-
-Base URL:
-
-```text
-/api/subsidies
-```
-
-## 1. Create Subsidy
-
-### Request
-
-```http
-POST /api/subsidies
-```
-
-### Example Request Body
-
-```json
-{
-    "name": "Agriculture Subsidy",
-    "description": "Financial support for farmers",
-    "amount": 50000,
-    "beneficiaryName": "Rahul Sharma",
-    "status": "PENDING"
-}
-```
-
-### Response
-
-```json
-{
-    "id": 1,
-    "name": "Agriculture Subsidy",
-    "description": "Financial support for farmers",
-    "amount": 50000.0,
-    "beneficiaryName": "Rahul Sharma",
-    "status": "PENDING"
-}
-```
-
-### HTTP Status
-
-```text
-201 Created
+├── backend/
+│   ├── src/
+│   │   └── main/
+│   │       ├── java/
+│   │       │   └── com/
+│   │       │       └── government/
+│   │       │           └── subsidy/
+│   │       │
+│   │       └── resources/
+│   │
+│   ├── pom.xml
+│   └── uploads/
+│
+├── frontend/
+│   ├── src/
+│   │   ├── components/
+│   │   ├── pages/
+│   │   ├── services/
+│   │   └── App.jsx
+│   │
+│   ├── package.json
+│   └── vite.config.js
+│
+├── .gitignore
+└── README.md
 ```
 
 ---
 
-## 2. Get Subsidy By ID
+## 🗄️ Database Entities
 
-### Request
-
-```http
-GET /api/subsidies/{id}
-```
-
-### Example
-
-```http
-GET /api/subsidies/1
-```
-
-### HTTP Status
+The major entities in the system include:
 
 ```text
-200 OK
+User
+Beneficiary
+Scheme
+Application
+BeneficiaryDocument
+Verification
+Milestone
+Disbursement
+FundUtilization
+AuditLog
+```
+
+Relationships include:
+
+```text
+Beneficiary
+    ↓
+Application
+    ↓
+Verification
+    ↓
+Milestone
+    ↓
+Disbursement
+    ↓
+FundUtilization
 ```
 
 ---
 
-## 3. Get All Subsidies
+## 🔗 Important API Endpoints
 
-### Request
-
-```http
-GET /api/subsidies
-```
-
-### HTTP Status
+### Beneficiaries
 
 ```text
-200 OK
+GET     /api/beneficiaries
+GET     /api/beneficiaries/{id}
+POST    /api/beneficiaries
+PUT     /api/beneficiaries/{id}
+DELETE  /api/beneficiaries/{id}
 ```
 
-### Example Response
+### Schemes
 
-```json
-[
-    {
-        "id": 1,
-        "name": "Agriculture Subsidy",
-        "description": "Financial support for farmers",
-        "amount": 50000.0,
-        "beneficiaryName": "Rahul Sharma",
-        "status": "PENDING"
-    },
-    {
-        "id": 2,
-        "name": "Education Grant",
-        "description": "Financial assistance for students",
-        "amount": 30000.0,
-        "beneficiaryName": "Aman Kumar",
-        "status": "APPROVED"
-    }
-]
+```text
+GET     /api/schemes
+GET     /api/schemes/{id}
+POST    /api/schemes
+PUT     /api/schemes/{id}
+DELETE  /api/schemes/{id}
+```
+
+### Applications
+
+```text
+GET     /api/applications
+GET     /api/applications/{id}
+POST    /api/applications
+PUT     /api/applications/{id}
+DELETE  /api/applications/{id}
+```
+
+### Documents
+
+```text
+GET     /api/documents
+POST    /api/documents
+POST    /api/documents/upload
+PUT     /api/documents/{id}
+PUT     /api/documents/{id}/verify
+DELETE  /api/documents/{id}
+```
+
+### Verifications
+
+```text
+GET     /api/verifications
+POST    /api/verifications
+PUT     /api/verifications/{id}
+DELETE  /api/verifications/{id}
+```
+
+### Milestones
+
+```text
+GET     /api/milestones
+POST    /api/milestones
+PUT     /api/milestones/{id}
+DELETE  /api/milestones/{id}
+```
+
+### Disbursements
+
+```text
+GET     /api/disbursements
+POST    /api/disbursements
+PUT     /api/disbursements/{id}
+DELETE  /api/disbursements/{id}
+```
+
+### Fund Utilization
+
+```text
+GET     /api/fund-utilizations
+POST    /api/fund-utilizations
+PUT     /api/fund-utilizations/{id}
+DELETE  /api/fund-utilizations/{id}
+GET     /api/fund-utilizations/summary
+```
+
+### Dashboard
+
+```text
+GET     /api/dashboard/summary
+```
+
+### Analytics
+
+```text
+GET     /api/analytics/beneficiaries-by-region
+GET     /api/analytics/applications-by-status
+GET     /api/analytics/total-applications
+GET     /api/analytics/approved-applications
+GET     /api/analytics/pending-applications
+GET     /api/analytics/total-fund-released
+GET     /api/analytics/total-fund-utilized
 ```
 
 ---
 
-## 4. Update Subsidy
+## ⚙️ Installation & Setup
 
-### Request
-
-```http
-PUT /api/subsidies/{id}
-```
-
-### Example
-
-```http
-PUT /api/subsidies/1
-```
-
-### Request Body
-
-```json
-{
-    "amount": 75000,
-    "status": "APPROVED"
-}
-```
-
-The application updates only the fields provided in the request.
-
-### HTTP Status
-
-```text
-200 OK
-```
-
----
-
-## 5. Delete Subsidy
-
-### Request
-
-```http
-DELETE /api/subsidies/{id}
-```
-
-### Example
-
-```http
-DELETE /api/subsidies/1
-```
-
-### HTTP Status
-
-```text
-204 No Content
-```
-
----
-
-# ⚙️ Business Logic
-
-The Service Implementation contains the main business logic.
-
-One important feature is the default subsidy status.
-
-If the client does not provide a status:
-
-```java
-if (subsidy.getStatus() == null ||
-        subsidy.getStatus().isBlank()) {
-
-    subsidy.setStatus("PENDING");
-}
-```
-
-The application automatically sets:
-
-```text
-PENDING
-```
-
-This ensures that every newly created subsidy has an initial status.
-
----
-
-# 🛡️ Exception Handling
-
-The project uses custom exception handling.
-
-## Custom Exception
-
-```java
-public class SubsidyNotFoundException
-        extends RuntimeException {
-}
-```
-
-This exception is thrown when a requested subsidy does not exist.
-
-For example:
-
-```text
-GET /api/subsidies/100
-```
-
-If ID `100` does not exist, the application throws:
-
-```text
-SubsidyNotFoundException
-```
-
----
-
-## Global Exception Handler
-
-The project uses:
-
-```java
-@RestControllerAdvice
-```
-
-to handle exceptions globally.
-
-The application returns a structured response such as:
-
-```json
-{
-    "timestamp": "2026-08-13T10:30:00",
-    "status": 404,
-    "error": "Not Found",
-    "message": "Subsidy not found with id: 100"
-}
-```
-
-This provides a clean and consistent error response to the client.
-
-
-# 💾 Database
-
-The application uses **MySQL** as the relational database.
-
-Example database configuration:
-
-```properties
-spring.datasource.url=jdbc:mysql://localhost:3306/subsidydb
-spring.datasource.username=root
-spring.datasource.password=YOUR_PASSWORD
-
-spring.jpa.hibernate.ddl-auto=update
-spring.jpa.show-sql=true
-```
-
-> Replace `YOUR_PASSWORD` with your local MySQL password.
-
-The application uses Hibernate/JPA to communicate with MySQL.
-
----
-
-# 📦 Maven Dependencies
-
-The project uses dependencies for:
-
-```text
-Spring Web
-Spring Data JPA
-Spring Boot Validation
-MySQL Driver
-Lombok
-Spring Boot DevTools
-```
-
-These dependencies provide REST API development, database integration, validation, reduced boilerplate code, and development-time support.
-
----
-
-# 🧪 Testing With Postman
-
-The REST APIs can be tested using Postman.
-
-### Create
-
-```text
-POST http://localhost:8080/api/subsidies
-```
-
-### Get All
-
-```text
-GET http://localhost:8080/api/subsidies
-```
-
-### Get By ID
-
-```text
-GET http://localhost:8080/api/subsidies/1
-```
-
-### Update
-
-```text
-PUT http://localhost:8080/api/subsidies/1
-```
-
-### Delete
-
-```text
-DELETE http://localhost:8080/api/subsidies/1
-```
-
----
-
-# ▶️ How to Run the Project
-
-## Step 1: Clone the Repository
+### 1. Clone the Repository
 
 ```bash
-git clone https://github.com/Piyush-Srivastava16/Government-Subsidy-Grant-Disbursement-Tracking-System
+git clone <YOUR_GITHUB_REPOSITORY_URL>
 ```
 
-## Step 2: Open the Project
+```bash
+cd Government-Subsidy-Grant-System
+```
 
-Open the project in:
+---
 
-* IntelliJ IDEA
-* Eclipse
-* VS Code
-* Spring Tool Suite
-
-## Step 3: Configure MySQL
+### 2. Configure MySQL
 
 Create the database:
 
@@ -520,29 +452,33 @@ Create the database:
 CREATE DATABASE subsidydb;
 ```
 
-Then update the database credentials in:
+Update the Spring Boot database configuration according to your local MySQL setup.
 
-```text
-src/main/resources/application.properties
+Example:
+
+```properties
+spring.datasource.url=jdbc:mysql://localhost:3306/subsidydb
+spring.datasource.username=root
+spring.datasource.password=YOUR_PASSWORD
 ```
 
-## Step 4: Build the Project
+---
 
-Using Maven:
+### 3. Run Backend
+
+Go to backend directory:
 
 ```bash
-mvn clean install
+cd backend
 ```
 
-## Step 5: Run the Application
+Run:
 
 ```bash
 mvn spring-boot:run
 ```
 
-Or run the main Spring Boot application class directly from the IDE.
-
-The application will start on:
+Backend will run on:
 
 ```text
 http://localhost:8080
@@ -550,43 +486,116 @@ http://localhost:8080
 
 ---
 
-# 📊 CRUD Operations
+### 4. Run Frontend
 
-| Operation | HTTP Method | Endpoint              |
-| --------- | ----------- | --------------------- |
-| Create    | POST        | `/api/subsidies`      |
-| Read One  | GET         | `/api/subsidies/{id}` |
-| Read All  | GET         | `/api/subsidies`      |
-| Update    | PUT         | `/api/subsidies/{id}` |
-| Delete    | DELETE      | `/api/subsidies/{id}` |
+Open another terminal:
+
+```bash
+cd frontend
+```
+
+Install dependencies:
+
+```bash
+npm install
+```
+
+Run the application:
+
+```bash
+npm run dev
+```
+
+Frontend will normally run on:
+
+```text
+http://localhost:5173
+```
+
+---
+
+## 🧪 Testing
+
+The APIs can be tested using **Postman**.
+
+Recommended testing order:
+
+```text
+1. User
+2. Beneficiary
+3. Scheme
+4. Application
+5. Document
+6. Verification
+7. Milestone
+8. Disbursement
+9. Fund Utilization
+10. Dashboard
+11. Analytics
+```
 
 ---
 
-# 🎯 Learning Objectives
+## 📊 Dashboard
 
-Through this project, I practiced and implemented:
+The dashboard provides a centralized overview of subsidy administration data including application statistics and fund utilization.
 
-* Core Java concepts
-* Spring Boot
-* REST API development
-* Dependency Injection
-* Constructor Injection
-* `@Qualifier`
-* Spring Data JPA
-* Hibernate
-* MySQL integration
-* CRUD operations
-* Entity mapping
-* Exception handling
-* Global exception handling
-* Request validation
-* HTTP status codes
-* Postman API testing
-* Maven
-* Git and GitHub
-* Layered architecture
+Example metrics:
+
+```text
+Total Beneficiaries
+Total Applications
+Approved Applications
+Pending Applications
+Total Disbursements
+Total Fund Released
+Total Fund Utilized
+Fund Utilization %
+```
 
 ---
+
+## 🔮 Future Enhancements
+
+Possible future improvements include:
+
+* JWT-based authentication
+* Email/SMS notifications
+* Advanced eligibility scoring algorithms
+* PDF/Excel report generation
+* Cloud file storage
+* Advanced audit trail
+* Deployment using Docker
+* Cloud deployment
+* Automated scheduled disbursement processing
+* Advanced analytics and reporting
+
+---
+
+## 👨‍💻 Project Status
+
+```text
+Backend CRUD                         ✅
+MySQL Integration                    ✅
+REST APIs                            ✅
+Document Upload                      ✅
+Multi-Level Verification             ✅
+Milestone Management                 ✅
+Disbursement Management              ✅
+Fund Utilization                     ✅
+Role-Based Access Control            ✅
+Dashboard                            ✅
+Analytics                            ✅
+React Frontend                       ✅
+```
+
+---
+
+## 📌 Conclusion
+
+The **Development of Digital Subsidy & Grant Administration Platform** provides a structured digital solution for managing government subsidy and grant activities.
+
+The platform integrates beneficiary management, applications, document verification, multi-level approval, milestone tracking, fund disbursement, fund utilization, security, dashboard monitoring, and analytics into a single system.
 
 
 # 👨‍💻 Author
